@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func GetConn(serverUri string) (interface{}) {
+func GetConn(serverUri string) (*grpc.ClientConn) {
 	//arr := strings.Split(serverUri, "/")
 	//service := arr[2]
 	//myFun := arr[3]
