@@ -3,7 +3,6 @@ package system_grpc
 import (
 	"google.golang.org/grpc"
 	"log"
-	"strings"
 )
 
 func GetConn(serverUri string) (*grpc.ClientConn) {
@@ -19,15 +18,16 @@ func GetConn(serverUri string) (*grpc.ClientConn) {
 	//fmt.Printf("service:::::%s", service)
 	////impl.Factory =   service+="Impl"
 	//return impl.Factory
-	arr := strings.Split(serverUri, "/")
-	service := arr[2]
-	myFun := arr[3]
-	firstCode := string([]rune(myFun)[:1])
-	myFun = strings.ToUpper(firstCode) + string([]rune(myFun)[1:])
+	//arr := strings.Split(serverUri, "/")
+	//service := arr[2]
+	//myFun := arr[3]
+	//firstCode := string([]rune(myFun)[:1])
+	//myFun = strings.ToUpper(firstCode) + string([]rune(myFun)[1:])
 	var address string
-	if service == "mine/pool" {
-		address = "127.0.0.1:50051/" + service
+	if serverUri == "/mine/pool" {
+		address = "localhost:50051"
 	}
+	//address = "localhost:50051"
 	// Set up a connection to the server.
 	conn, err := grpc.Dial(address, grpc.WithInsecure())
 	if err != nil {
