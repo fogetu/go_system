@@ -2,3 +2,5 @@
 cloud_miner
 .env
 .idea
+go.mod
+go.sum
