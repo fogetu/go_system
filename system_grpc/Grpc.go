@@ -1,6 +1,7 @@
 package system_grpc
 
 import (
+	"github.com/fogetu/go_system/system_config"
 	"google.golang.org/grpc"
 	"log"
 )
@@ -24,8 +25,8 @@ func GetConn(serverUri string) (*grpc.ClientConn) {
 	//firstCode := string([]rune(myFun)[:1])
 	//myFun = strings.ToUpper(firstCode) + string([]rune(myFun)[1:])
 	var address string
-	if serverUri == "/mine/pool" {
-		address = "localhost:50051"
+	if serverUri == system_config.MINE_POOL {
+		address = system_config.MinePoolAddr
 	}
 	//address = "localhost:50051"
 	// Set up a connection to the server.

@@ -12,7 +12,7 @@ import (
 func Get(url string) (resp *http.Response, err error) {
 	system_config.Configer().String("appname")
 	client := http.Client{
-		Timeout: time.Duration(2 * time.Second),
+		Timeout: time.Duration(2000 * time.Millisecond),
 	}
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
