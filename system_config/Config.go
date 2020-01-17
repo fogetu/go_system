@@ -2,8 +2,10 @@ package system_config
 
 import (
 	"github.com/astaxie/beego/config"
+	"github.com/astaxie/beego/logs"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 var (
@@ -25,6 +27,16 @@ func init() {
 	Iniconf, configErr = config.NewConfig("ini", appConfigPath)
 	if configErr != nil {
 		panic(configErr)
+	}
+	if lo := Iniconf.String("LogOutputs"); lo != "" {
+		los := strings.Split(lo, ";")
+		for _, v := range los {
+			if logType2Config := strings.SplitN(v, ",", 2); len(logType2Config) == 2 {
+				logs.SetLogger(logType2Config[0],logType2Config[1])
+			} else {
+				continue
+			}
+		}
 	}
 }
 
